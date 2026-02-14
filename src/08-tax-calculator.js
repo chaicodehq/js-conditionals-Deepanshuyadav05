@@ -26,5 +26,50 @@
  * @returns {number} Total tax amount owed
  */
 export function calculateTax(income) {
-  // Your code here
+  if(income <= 10000) return 0
+    let totalTax = 0
+    let taxableAmount = 0
+
+    if(income > 70000){
+        taxableAmount = income - 70000
+        income -= taxableAmount
+        totalTax += (30 * taxableAmount)/100
+    }
+    if(income > 30000 && income <= 70000){
+        taxableAmount = income - 30000
+        income -= taxableAmount
+        totalTax += (20 * taxableAmount)/100
+    }
+    if(income > 10000 && income <= 30000){
+        taxableAmount = income - 10000
+        // income -= taxableAmount
+        totalTax += (10 * taxableAmount)/100
+    }
+    return totalTax
+
+    //optimized code
+    /*export function calculateTax(income) {
+        if (income <= 10000) return 0;
+
+        let totalTax = 0;
+
+        // Bracket 4: Over $70,000 (30%)
+        if (income > 70000) {
+            totalTax += (income - 70000) * 0.30;
+            income = 70000; // Cap the income for the next brackets
+        }
+
+        // Bracket 3: $30,001 to $70,000 (20%)
+        if (income > 30000) {
+            totalTax += (income - 30000) * 0.20;
+            income = 30000;
+        }
+
+        // Bracket 2: $10,001 to $30,000 (10%)
+        if (income > 10000) {
+            totalTax += (income - 10000) * 0.10;
+        }
+
+        return Math.floor(totalTax);
+    }*/
 }

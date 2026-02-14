@@ -31,5 +31,48 @@
  * @returns {{ season: string, activity: string } | null}
  */
 export function getSeasonActivity(month, temperature) {
-  // Your code here
+  if(month < 1 || month > 12) return null
+
+    if( month === 12 || month === 1 || month === 2 ){
+        return temperature<0 ?  {season: 'Winter', activity: 'skiing'} :  {season: 'Winter', activity: 'ice skating'}
+    }
+    else if(month === 3 || month === 4 || month === 5){
+        return temperature > 20 ?  {season: 'Spring', activity: 'hiking'} :  {season: 'Spring', activity: 'museum visit'}
+    }
+    else if(month === 6 || month === 7 || month === 8){
+        return temperature > 35 ?  {season: 'Summer', activity: 'swimming'} :  {season: 'Summer', activity: 'cycling'}
+    }
+    else if(month === 9 || month === 10 || month === 11){
+        return temperature > 15 ?  {season: 'Autumn', activity: 'nature walk'} :  {season: 'Autumn', activity: 'reading at a cafe'}
+    }
+
+    //optimize code
+    /*export function getSeasonActivity(month, temperature) {
+        // 1. Validation
+        if (month < 1 || month > 12) return null;
+
+        let season = "";
+        let activity = "";
+
+        // 2. Determine Season (using .includes for cleaner syntax)
+        if ([12, 1, 2].includes(month)) {
+            season = "Winter";
+            activity = temperature < 0 ? "skiing" : "ice skating";
+        }
+        else if ([3, 4, 5].includes(month)) {
+            season = "Spring";
+            activity = temperature > 20 ? "hiking" : "museum visit";
+        }
+        else if ([6, 7, 8].includes(month)) {
+            season = "Summer";
+            activity = temperature > 35 ? "swimming" : "cycling";
+        }
+        else {
+            season = "Autumn";
+            activity = temperature > 15 ? "nature walk" : "reading at a cafe";
+        }
+
+        return { season, activity };
+    }*/
+
 }
